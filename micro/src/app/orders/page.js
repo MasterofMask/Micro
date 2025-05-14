@@ -33,24 +33,16 @@ const OrdersPage = () => {
   ]);
 
   // Inicializa Bootstrap (opcional)
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.bootstrap) {
-      window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.min.js");
-    }
-  }, []);
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        import("bootstrap/dist/js/bootstrap.bundle.min.js");
+      }
+    }, []);
 
   return (
     <>
       <Head>
         <title>Tus Pedidos</title>
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          defer
-        ></script>
       </Head>
 
       <Navbar />
@@ -84,7 +76,7 @@ const OrdersPage = () => {
                   aria-labelledby={`heading${pedido.id}`}
                   data-bs-parent="#accordionPedidos"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body text-start">
                     <p>
                       <strong>Dirección de envío:</strong> {pedido.direccionEnvio}
                     </p>
