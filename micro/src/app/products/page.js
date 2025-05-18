@@ -2,18 +2,23 @@ import { connectDB } from "../lib/mongodb";
 import Producto from "../models/Producto";
 import Navbar from "../components/navbar";
 
-
 export default async function ProductsPage() {
   await connectDB();
   const productos = await Producto.find({}).lean();
-  console.log("Productos desde Mongo:", productos); // Pa ver pq no se agregran 
+
+  // Convertir _id a string para evitar errores, al parecer a mongo db no le gustan los id
+  const productosLimpios = productos.map((p) => ({
+    ...p,
+    _id: p._id.toString()
+  }));
+
   return (
     <>
       <Navbar />
       <div className="container mt-5 bg-white rounded shadow p-4">
         <h2 className="mb-4 text-center">Catálogo de Productos</h2>
         <div className="row">
-          {productos.map((p) => (
+          {productosLimpios.map((p) => (
             <div className="col-md-4 mb-4" key={p._id}>
               <div className="card h-100 shadow-sm">
                 <img
@@ -28,7 +33,7 @@ export default async function ProductsPage() {
                   <p className="text-muted">Stock disponible: {p.stock}</p>
                   <form onSubmit={(e) => e.preventDefault()} className="mt-auto">
                     <input type="hidden" name="accion" value="agregar" />
-                    <input type="hidden" name="productoId" value="${p.id}"/>
+                    <input type="hidden" name="productoId" value={p._id} />
                     <div className="mb-2">
                       <label htmlFor={`cantidad-${p._id}`} className="form-label">
                         Cantidad
