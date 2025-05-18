@@ -1,6 +1,7 @@
-import { connectDB } from "@/lib/mongodb";
-import Producto from "@/models/products";
-import Navbar from "@/app/components/navbar";
+import { connectDB } from "../../lib/mongodb";
+import Producto from "../../../models/Producto";
+import Navbar from "../../components/navbar";
+
 
 export default async function ProductsPage() {
   await connectDB();
