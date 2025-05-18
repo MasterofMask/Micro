@@ -6,7 +6,7 @@ import Navbar from "../components/navbar";
 export default async function ProductsPage() {
   await connectDB();
   const productos = await Producto.find({}).lean();
-
+  console.log("Productos desde Mongo:", productos); // Pa ver pq no se agregran 
   return (
     <>
       <Navbar />
