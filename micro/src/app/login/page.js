@@ -1,29 +1,46 @@
 "use client";
 
-import React, { useState } from 'react';
-import Head from 'next/head';
+import React, { useState } from "react";
+import Head from "next/head";
 
 const LoginPage = () => {
   const [error, setError] = useState(null);
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    // Aquí puedes manejar la lógica de inicio de sesión
-    console.log('Login Data:', data);
-    // Simula un error
-    setError('Correo o contraseña incorrectos.');
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    if (!result.ok) {
+      setError(result.msg);
+    } else {
+      console.log("Usuario autenticado:", result.user);
+      // Aquí podrías redirigir o guardar sesión
+    }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    // Aquí puedes manejar la lógica de registro
-    console.log('Register Data:', data);
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    if (!result.ok) {
+      setError(result.msg);
+    } else {
+      alert("Registro exitoso");
+    }
   };
 
   return (
@@ -43,7 +60,6 @@ const LoginPage = () => {
             <div className="col-md-6">
               <h2 className="text-center mb-4">Iniciar Sesión</h2>
 
-              {/* Mensaje de error */}
               {error && <div className="alert alert-danger">{error}</div>}
 
               {/* FORM LOGIN */}
@@ -88,7 +104,9 @@ const LoginPage = () => {
 
               <hr className="my-5" />
 
-              <h4 className="text-center mb-4">¿No tienes cuenta? Regístrate</h4>
+              <h4 className="text-center mb-4">
+                ¿No tienes cuenta? Regístrate
+              </h4>
 
               {/* FORM REGISTRO */}
               <form
