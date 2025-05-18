@@ -1,8 +1,10 @@
+import { connectDB } from "@/lib/mongodb";
+import Producto from "@/models/products";
 import Navbar from "@/app/components/navbar";
 
 export default async function ProductsPage() {
-  const res = await fetch("http://localhost:3000/api/productos", { cache: "no-store" });
-  const productos = await res.json();
+  await connectDB();
+  const productos = await Producto.find({}).lean();
 
   return (
     <>
@@ -23,15 +25,7 @@ export default async function ProductsPage() {
                   <p className="card-text">{p.descripcion}</p>
                   <p className="fw-bold">${p.precio}</p>
                   <p className="text-muted">Stock disponible: {p.stock}</p>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const formData = new FormData(e.target);
-                      const data = Object.fromEntries(formData);
-                      console.log("Producto agregado al carrito:", { productoId: p._id, ...data });
-                    }}
-                    className="mt-auto"
-                  >
+                  <form onSubmit={(e) => e.preventDefault()} className="mt-auto">
                     <input type="hidden" name="accion" value="agregar" />
                     <input type="hidden" name="productoId" value={p._id} />
                     <div className="mb-2">
