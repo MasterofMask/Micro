@@ -1,5 +1,5 @@
 import { connectDB } from "../../lib/mongodb";
-import Producto from "../../../models/Producto";
+import Producto from "../../../models/products";
 import Navbar from "../../components/navbar";
 
 
