@@ -28,7 +28,7 @@ export default async function ProductsPage() {
                   <p className="text-muted">Stock disponible: {p.stock}</p>
                   <form onSubmit={(e) => e.preventDefault()} className="mt-auto">
                     <input type="hidden" name="accion" value="agregar" />
-                    <input type="hidden" name="productoId" value={`${p._id}`} />
+                    <input type="hidden" name="productoId" value="${p.id}"/>
                     <div className="mb-2">
                       <label htmlFor={`cantidad-${p._id}`} className="form-label">
                         Cantidad
