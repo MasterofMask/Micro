@@ -29,7 +29,7 @@ export default function LoginPage() {
       
       if (data.ok) {
         // Redirección después de login exitoso
-        router.push(data.redirectTo || '/productos');
+        router.push(data.redirectTo || '/products');
       } else {
         setError(data.msg || 'Error al iniciar sesión');
       }
