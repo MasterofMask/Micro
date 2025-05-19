@@ -1,22 +1,25 @@
 import { connectDB } from "../../../lib/mongodb";
 import Usuario from "../../../models/Usuario";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
+  const body = await req.json();
   await connectDB();
-  const data = await req.json();
 
-  const user = await Usuario.findOne({ email: data.email, password: data.password });
-  if (!user) {
-    return Response.json({ ok: false, msg: "Correo o contraseña incorrectos." }, { status: 401 });
+  const usuario = await Usuario.findOne({ email: body.email });
+
+  if (!usuario || usuario.password !== body.password) {
+    return NextResponse.json({ ok: false, msg: "Credenciales incorrectas" });
   }
 
-  // Guardar ID de usuario en cookie
-  cookies().set("user_id", user._id.toString(), {
+  const cookieStore = cookies(); 
+
+  cookieStore.set("user_id", usuario._id.toString(), {
     httpOnly: true,
     path: "/",
-    maxAge: 60 * 60 * 24 // 1 día
+    maxAge: 60 * 60 * 24, // 1 día
   });
 
-  return Response.json({ ok: true, user: { nombre: user.nombre, email: user.email } });
+  return NextResponse.json({ ok: true, user: usuario });
 }
