@@ -69,7 +69,7 @@ export default function HomePage() {
               </div>
             ) : isLoggedIn ? (
               <>
-                <Link href="/productos" className="btn btn-primary btn-lg me-2">
+                <Link href="/products" className="btn btn-primary btn-lg me-2">
                   Ir a la tienda
                 </Link>
                 <button 
