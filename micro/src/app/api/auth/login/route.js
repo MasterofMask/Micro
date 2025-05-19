@@ -1,9 +1,10 @@
 import { connectDB } from "../../../lib/mongodb";
 import Usuario from "../../../models/Usuario";
-import { cookies } from "next/headers";
+
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
+  const { cookies } = await import("next/headers"); // dicen que esto arregla
   const body = await req.json();
   await connectDB();
 
@@ -13,8 +14,7 @@ export async function POST(req) {
     return NextResponse.json({ ok: false, msg: "Credenciales incorrectas" });
   }
 
-  const cookieStore = cookies(); 
-
+  const cookieStore = cookies(); // ✅ llamado dinámico
   cookieStore.set("user_id", usuario._id.toString(), {
     httpOnly: true,
     path: "/",
