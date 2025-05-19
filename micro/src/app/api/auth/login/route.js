@@ -14,11 +14,11 @@ export async function POST(req) {
     return NextResponse.json({ ok: false, msg: "Credenciales incorrectas" });
   }
 
-  const cookieStore = cookies(); // ✅ llamado dinámico
-  cookieStore.set("user_id", usuario._id.toString(), {
-    httpOnly: true,
-    path: "/",
-    maxAge: 60 * 60 * 24, // 1 día
+  const cookieStore = await cookies(); //  await aquí
+  cookieStore.set('user_id', usuario._id.toString(), {
+  httponly: true,
+  path: "/",
+  maxAge: 60 * 60 * 24 // 1 día
   });
 
   return NextResponse.json({ ok: true, user: usuario });
