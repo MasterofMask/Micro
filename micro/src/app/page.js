@@ -1,12 +1,56 @@
-import React from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Head from 'next/head';
-import Navbar from './components/navbar';
-import { cookies } from "next/headers";
+
 export default function HomePage() {
-  const cookieStore = cookies();
-  const userLogged = cookieStore.get("user_id");
-  const isUserLoggedIn = !!userLogged;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const response = await fetch('/api/auth/check', {
+          method: 'GET',
+          credentials: 'include' // importante para incluir cookies
+        });
+        const data = await response.json();
+        
+        setIsLoggedIn(data.isAuthenticated);
+        if (data.isAuthenticated && data.user) {
+          setUser(data.user);
+        }
+      } catch (error) {
+        console.error('Error verificando autenticación:', error);
+        setIsLoggedIn(false);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    checkAuth();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      
+      const data = await response.json();
+      
+      if (data.ok) {
+        setIsLoggedIn(false);
+        setUser(null);
+        // Opcional: redirigir si es necesario
+        window.location.href = data.redirectTo || '/';
+      }
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
 
   return (
     <main className="bg-light min-vh-100 d-flex align-items-center">
@@ -19,20 +63,21 @@ export default function HomePage() {
               servidores.
             </p>
 
-            {isUserLoggedIn ? (
+            {loading ? (
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Cargando...</span>
+              </div>
+            ) : isLoggedIn ? (
               <>
                 <Link href="/productos" className="btn btn-primary btn-lg me-2">
                   Ir a la tienda
                 </Link>
-                <form
-                  action="/api/auth/logout"
-                  method="POST"
-                  style={{ display: "inline" }}
+                <button 
+                  onClick={handleLogout} 
+                  className="btn btn-danger btn-lg"
                 >
-                  <button type="submit" className="btn btn-danger btn-lg">
-                    Cerrar sesión
-                  </button>
-                </form>
+                  Cerrar sesión
+                </button>
               </>
             ) : (
               <Link href="/login" className="btn btn-outline-primary btn-lg">
