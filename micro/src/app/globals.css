@@ -1,6 +1,7 @@
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +19,19 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* background: var(--background); */
+  /* background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #4f46e5 100%); */
+  /* background: linear-gradient(135deg, #263053 0%, #1E2D43 25%, #1B2B38 50%, #161A1E 100%); */
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  /* font-family: Arial, Helvetica, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bgGradient {
+  background: linear-gradient(135deg, #263053 0%, #1E2D43 25%, #1B2B38 50%, #161A1E 100%);
 }
 
 * {
@@ -33,6 +43,31 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.logo {
+  width: 50%;
+  height: auto;
+}
+
+.h1Text {
+  color: #263053;
+  font-family: var(--font-inter);
+  font-weight: 500;
+
+}
+
+.lead {
+  color: #263053;
+  font-family: var(--font-inter);
+  font-weight: 400;
+
+}
+
+
+.mainImage {
+  width: 80%;
+  height: auto;
 }
 
 @media (prefers-color-scheme: dark) {

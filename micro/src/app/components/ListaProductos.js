@@ -13,7 +13,7 @@ export default function ListaProductos({ productos }) {
         <div className="col-md-4 mb-4" key={p._id}>
           <div className="card h-100 shadow-sm">
             <img
-              src={p.imagen || "https://via.placeholder.com/300x200?text=Sin+imagen"}
+              src={p.imagen || "https://i.ibb.co/6JVXWSc2/d0ba2ca16eb107f45152548f81a727e0.jpg"}
               className="card-img-top"
               alt={p.nombre}
             />

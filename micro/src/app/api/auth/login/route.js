@@ -38,7 +38,7 @@ export async function POST(req) {
     return NextResponse.json({ 
       ok: true, 
       user: userResponse,
-      redirectTo: '/products' // Indica la ruta a la que redirigir
+      redirectTo: '/' // Indica la ruta a la que redirigir
     });
   } catch (error) {
     console.error("Error en login:", error);

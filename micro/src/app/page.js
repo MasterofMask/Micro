@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, React } from 'react';
 import Link from 'next/link';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,15 +54,22 @@ export default function HomePage() {
   };
 
   return (
-    <main className="bg-light min-vh-100 d-flex align-items-center">
-      <div className="container">
-        <div className="row justify-content-center text-center">
-          <div className="col-md-8">
-            <h1 className="display-4 fw-bold mb-4">Bienvenido a COPDS</h1>
-            <p className="lead mb-4">
-              Sistema de compras en línea para componentes y soluciones de
-              servidores.
-            </p>
+    <main className="min-vh-100 d-flex align-items-center bgGradient">
+      <div className="container-fluid">
+        <div className="row position-fixed h-50 top-0 start-0 p-3 ml-3">
+          <div className="col-md-12 h-25 d-flex align-items-center ">
+            <img className="logo" src="https://i.ibb.co/hJXD2FMP/COPDS-removebg-preview.png" alt="COPDS Logo"/>
+          </div>
+        </div>
+        <div className="row text-center">
+          <div className="col-md-6 d-flex flex-column justify-content-center align-items-center p-5">
+            <div className="bg-white p-5 h-100 d-inline-block rounded">
+              <h1 className="display-4 mb-4 h1Text">Bienvenido a COPDS</h1>
+              <p className="lead mb-4">
+                Sistema de compras en línea para componentes y soluciones de
+                servidores.
+              </p>
+           
 
             {loading ? (
               <div className="spinner-border text-primary" role="status">
@@ -83,10 +91,15 @@ export default function HomePage() {
               <Link href="/login" className="btn btn-outline-primary btn-lg">
                 Iniciar sesión
               </Link>
-            )}
+            )} 
+            </div>
           </div>
+          <div className="col-md-6">
+            <img className="mainImage" src="https://i.ibb.co/PzD8sm6W/1032-Photoroom.png" alt="zoom-Background1" border="0" />
+        </div>
         </div>
       </div>
     </main>
+
   );
 }
