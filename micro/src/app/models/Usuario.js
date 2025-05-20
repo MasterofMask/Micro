@@ -5,8 +5,6 @@ const UsuarioSchema = new mongoose.Schema({
   apellido: String,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  direccion: String,
-  telefono: String,
   fecha_registro: { type: Date, default: Date.now }
 });
 

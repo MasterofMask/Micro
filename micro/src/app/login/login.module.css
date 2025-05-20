@@ -6,14 +6,14 @@
 } */
 
 .bodyStyle {
-    background: #f6f5f7;
+    background: linear-gradient(135deg, #263053 0%, #1E2D43 25%, #1B2B38 50%, #161A1E 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
-    margin: -20px 0 50px;
+    /* margin: -20px 0 50px; */
 }
 
 .heading {
@@ -46,8 +46,8 @@
 
 .formButton {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+    border: 1px solid #ffc107;
+    background-color: #ffc107;
     /* background-color: linear-gradient(135deg, #2d2a5d 0%, #162736 100%); */
     color: #FFFFFF;
     font-size: 12px;
@@ -85,6 +85,7 @@
 
 .formInput {
     background-color: #eee;
+	color: #333;
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
@@ -162,9 +163,9 @@
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: #f7e09e;
+	background: -webkit-linear-gradient(to right, #fbd257, #fba744, #ff7f50);
+	background: linear-gradient(to left, #fbd257, #fba744, #ff7f50);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

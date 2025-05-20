@@ -56,14 +56,14 @@ export default function HomePage() {
   return (
     <main className="min-vh-100 d-flex align-items-center bgGradient">
       <div className="container-fluid">
-        <div className="row position-fixed h-50 top-0 start-0 p-3 ml-3">
+        <div className="row position-fixed h-50 top-0 start-1 p-3 ml-3">
           <div className="col-md-12 h-25 d-flex align-items-center ">
             <img className="logo" src="https://i.ibb.co/hJXD2FMP/COPDS-removebg-preview.png" alt="COPDS Logo"/>
           </div>
         </div>
         <div className="row text-center">
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-center p-5">
-            <div className="bg-white p-5 h-100 d-inline-block rounded">
+            <div className="p-5 h-100 d-inline-block rounded align-content-center boxShadow">
               <h1 className="display-4 mb-4 h1Text">Bienvenido a COPDS</h1>
               <p className="lead mb-4">
                 Sistema de compras en línea para componentes y soluciones de
@@ -88,7 +88,7 @@ export default function HomePage() {
                 </button>
               </>
             ) : (
-              <Link href="/login" className="btn btn-outline-primary btn-lg">
+              <Link href="/login" className=" btn btn-outline-warning btn-lg">
                 Iniciar sesión
               </Link>
             )} 

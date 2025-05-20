@@ -34,6 +34,11 @@ body {
   background: linear-gradient(135deg, #263053 0%, #1E2D43 25%, #1B2B38 50%, #161A1E 100%);
 }
 
+.navbarHeight {
+  height: 70px;
+}
+
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -46,22 +51,28 @@ a {
 }
 
 .logo {
-  width: 50%;
+  width: 40%;
   height: auto;
 }
 
 .h1Text {
-  color: #263053;
+  color: #ededed;
   font-family: var(--font-inter);
   font-weight: 500;
 
 }
 
 .lead {
-  color: #263053;
+  color: #ededed;
   font-family: var(--font-inter);
   font-weight: 400;
 
+}
+
+.boxShadow {
+  background-color: rgba(42, 45, 90, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(5px);
 }
 
 

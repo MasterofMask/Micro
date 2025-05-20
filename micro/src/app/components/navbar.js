@@ -5,10 +5,10 @@ const Navbar = () => {
   const isUserLoggedIn = true; // Simula el estado de sesión del usuario
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bgGradient fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bgGradient navbarHeight fixed-top">
       <div className="container">
         <Link href="/" className="navbar-brand">
-          COPDS
+          <img className="logo" src="https://i.ibb.co/hJXD2FMP/COPDS-removebg-preview.png" alt="COPDS Logo"/>
         </Link>
         <button
           className="navbar-toggler"
