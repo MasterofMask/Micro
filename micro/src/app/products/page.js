@@ -15,7 +15,7 @@ export default async function ProductsPage() {
   return (
     <>
       <Navbar />
-      <div className="container mt-5 bg-white rounded shadow p-4">
+      <div className="container mtop bg-white rounded shadow-lg p-4">
         <h2 className="mb-4 text-center">Catálogo de Productos</h2>
         <ListaProductos productos={productosLimpios} />
       </div>

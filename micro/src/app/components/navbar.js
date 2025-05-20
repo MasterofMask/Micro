@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bgGradient navbarHeight fixed-top">
-      <div className="container">
+      <div className="container-fluid">
         <Link href="/" className="navbar-brand">
           <img className="logo" src="https://i.ibb.co/hJXD2FMP/COPDS-removebg-preview.png" alt="COPDS Logo"/>
         </Link>

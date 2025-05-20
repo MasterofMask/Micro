@@ -38,6 +38,10 @@ body {
   height: 70px;
 }
 
+.mtop {
+  margin-top: 100px;
+}
+
 
 * {
   box-sizing: border-box;
@@ -79,6 +83,11 @@ a {
 .mainImage {
   width: 80%;
   height: auto;
+}
+
+.imgCard {
+  width: 250px;
+  height: 250px;
 }
 
 @media (prefers-color-scheme: dark) {
